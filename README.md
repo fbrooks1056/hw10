@@ -23,7 +23,7 @@ Then, in a browser, open `localhost:5173`. You should *not* open index.html in a
 
 ### 1. Implement Conversation
 
-When the user sends a message, the agent should respond **in real-time**. This can be done with a `POST` request to `https://cs571api.cs.wisc.edu/rest/hw10/completions-stream` appropriately handling the stream of responses. Please see `API_DOCUMENTATION.md` for more details.
+When the user sends a message, the agent should respond back. This can be done with a `POST` request to `https://cs571api.cs.wisc.edu/rest/hw10/completions`. Please see `API_DOCUMENTATION.md` for more details.
 
 ![An example conversation between user and assistant](_figures/step1.png)
 

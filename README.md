@@ -48,7 +48,7 @@ This is a fun, but required, step. Add 1 more persona to the list of `PERSONAS`.
 
 ### 4. Use `localStorage`
 
-The conversation history and selected persona should be persisted to `localStorage`. That is, whenever a user exits and returns to a page, the conversation and selected persona remains. The conversation should only reset whenever a user starts a new chat or the `localStorage` is cleared (e.g. deleting the browser history).
+The conversation history and selected persona should be persisted to `localStorage`. That is, whenever a user exits and returns to a page, the conversation and selected persona remains. The conversation should only reset whenever a user starts a new chat, switches personas, or the `localStorage` is cleared (e.g. deleting the browser history).
 
 ![An example of localStorage key/value pairs](_figures/step4.png)
 

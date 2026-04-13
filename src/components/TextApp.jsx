@@ -34,7 +34,7 @@ function TextApp(props) {
             addMessage(Constants.Roles.User, input);
             inputRef.current.value = "";
             
-            addMessage(Constants.Roles.Assistant, "I should respond to the user in realtime...");            
+            addMessage(Constants.Roles.Assistant, "I should respond to the user...");            
         }
         setIsLoading(false);
     }

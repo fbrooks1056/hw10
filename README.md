@@ -25,6 +25,8 @@ Then, in a browser, open `localhost:5173`. You should *not* open index.html in a
 
 When the user sends a message, the agent should respond back. This can be done with a `POST` request to `https://cs571api.cs.wisc.edu/rest/hw10/completions`. Please see `API_DOCUMENTATION.md` for more details.
 
+**Note:** Only "user" and "assistant" messages should be shown in the conversation. You may need to modify the existing code to hide the "developer" messages.
+
 ![An example conversation between user and assistant](_figures/step1.png)
 
 ### 2. Implement Personas

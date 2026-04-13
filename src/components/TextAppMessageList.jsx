@@ -12,14 +12,13 @@ export default function TextAppMessageList({messages}) {
     }, [messages])
 
     return <Container className="message-list">
-        {messages.map((message, i) => message.role !== Constants.Roles.Developer && (
-            <Row
+        {messages.map((message, i) => <Row
                 ref={i === messages.length - 1 ? lastItem : undefined}
                 key={i}
                 style={{marginBottom: "0.25rem"}}
             >
                 <Message role={message.role} content={message.content}/>
             </Row>
-        ))}
+        )}
     </Container>
 }

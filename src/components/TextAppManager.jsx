@@ -19,14 +19,16 @@ export default function TextAppManager() {
     ];
 
     const [personaName, setPersonaName] = useState(PERSONAS[0].name);
+    const [chatKey, setChatKey] = useState(0);
     const persona = PERSONAS.find(p => p.name === personaName);
 
     function handleNewChat() {
-        alert("I should handle starting a new chat.");
+        setChatKey(n => n + 1);
     }
 
     function handleSwitchPersona(selectedPersona) {
-        alert(`I should switch to the '${selectedPersona}' persona.`);
+        setPersonaName(selectedPersona);
+        setChatKey(n => n + 1);
     }
 
     return <Container style={{ marginTop: "0.25rem" }}>
@@ -43,6 +45,6 @@ export default function TextAppManager() {
                 </Dropdown.Menu>
             </Dropdown>
         </Nav>
-        <TextApp persona={persona}/>
+        <TextApp key={chatKey} persona={persona}/>
     </Container>
 }

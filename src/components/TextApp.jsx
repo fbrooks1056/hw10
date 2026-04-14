@@ -18,7 +18,8 @@ function TextApp(props) {
      */
     async function handleWelcome() {
         if (messages.length === 0) {
-            addMessage(Constants.Roles.Assistant, "Welcome!");            
+            addMessage(Constants.Roles.Developer, props.persona.prompt);
+            addMessage(Constants.Roles.Assistant, props.persona.initialMessage);
         }
     }
 
@@ -34,7 +35,19 @@ function TextApp(props) {
             addMessage(Constants.Roles.User, input);
             inputRef.current.value = "";
             
-            addMessage(Constants.Roles.Assistant, "I should respond to the user...");            
+            const resp = await fetch("https://cs571api.cs.wisc.edu/rest/s26/hw10/completions", {
+                method: "POST",
+                headers: {
+                    "X-CS571-ID": CS571.getBadgerId(),
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify([...messages, {
+                    role: Constants.Roles.User,
+                    content: input
+                }])
+            });
+            const data = await resp.json();
+            addMessage(Constants.Roles.Assistant, data.msg);
         }
         setIsLoading(false);
     }

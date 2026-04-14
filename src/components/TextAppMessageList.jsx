@@ -6,14 +6,15 @@ import Constants from "../constants/Constants";
 export default function TextAppMessageList({messages}) {
 
     const lastItem = useRef();
+    const visibleMessages = messages.filter(m => m.role !== Constants.Roles.Developer);
 
     useEffect(() => {
         lastItem.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [messages])
+    }, [visibleMessages])
 
     return <Container className="message-list">
-        {messages.map((message, i) => <Row
-                ref={i === messages.length - 1 ? lastItem : undefined}
+        {visibleMessages.map((message, i) => <Row
+                ref={i === visibleMessages.length - 1 ? lastItem : undefined}
                 key={i}
                 style={{marginBottom: "0.25rem"}}
             >

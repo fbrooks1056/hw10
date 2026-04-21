@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextApp from "./TextApp";
 
 import { Container, Dropdown, Nav, NavItem, NavLink } from "react-bootstrap";
 
 export default function TextAppManager() {
+
+    const PERSONA_KEY = "cs571-hw10-persona";
+    const MESSAGES_KEY = "cs571-hw10-messages";
 
     const PERSONAS = [
         {
@@ -23,18 +26,26 @@ export default function TextAppManager() {
         }
     ];
 
-    const [personaName, setPersonaName] = useState(PERSONAS[0].name);
+    const [personaName, setPersonaName] = useState(() => {
+        return localStorage.getItem(PERSONA_KEY) ?? PERSONAS[0].name;
+    });
     const [chatKey, setChatKey] = useState(0);
     const persona = PERSONAS.find(p => p.name === personaName);
 
     function handleNewChat() {
+        localStorage.removeItem(MESSAGES_KEY);
         setChatKey(n => n + 1);
     }
 
     function handleSwitchPersona(selectedPersona) {
         setPersonaName(selectedPersona);
+        localStorage.removeItem(MESSAGES_KEY);
         setChatKey(n => n + 1);
     }
+
+    useEffect(() => {
+        localStorage.setItem(PERSONA_KEY, personaName);
+    }, [personaName])
 
     return <Container style={{ marginTop: "0.25rem" }}>
         <Nav justify variant="tabs">

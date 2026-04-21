@@ -7,6 +7,8 @@ import Constants from '../constants/Constants';
 
 function TextApp(props) {
 
+    const MESSAGES_KEY = "cs571-hw10-messages";
+
     // Set to true to block the user from sending another message
     const [isLoading, setIsLoading] = useState(false);
 
@@ -66,8 +68,24 @@ function TextApp(props) {
     }
 
     useEffect(() => {
+        const stored = localStorage.getItem(MESSAGES_KEY);
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) {
+                    setMessages(parsed);
+                    return;
+                }
+            } catch (e) {
+                // ignore
+            }
+        }
         handleWelcome();
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem(MESSAGES_KEY, JSON.stringify(messages));
+    }, [messages]);
 
     return (
         <div className="app">
